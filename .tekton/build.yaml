@@ -9,8 +9,8 @@ spec:
       name: clone
       script: |
         yum install buildah -y
-        buildah --storage-driver vfs build -f /workspace/build/Dockerfile -t image-registry.openshift-image-registry.svc:5000/pfan/hello-shfe:v1 /workspace/source/code
-        buildah --storage-driver vfs push image-registry.openshift-image-registry.svc:5000/pfan/hello-shfe:v1
+        buildah --storage-driver vfs build -f /workspace/build/Dockerfile -t image-registry.openshift-image-registry.svc:5000/pfan2/hello-shfe:v1 /workspace/source/code
+        buildah --storage-driver vfs push image-registry.openshift-image-registry.svc:5000/pfan2/hello-shfe:v1
       securityContext:
         capabilities:
           add:

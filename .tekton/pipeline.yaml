@@ -1,0 +1,36 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: hello-shfe
+spec:
+  tasks:
+    - name: git-clone
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: source
+          workspace: source
+    - name: maven
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: Task
+        name: maven
+      workspaces:
+        - name: source
+          workspace: source
+    - name: build-image
+      runAfter:
+        - maven
+      taskRef:
+        kind: Task
+        name: build-image
+      workspaces:
+        - name: source
+          workspace: source
+        - name: build
+          workspace: build
+  workspaces:
+    - name: source
+    - name: build

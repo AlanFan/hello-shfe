@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: maven
+spec:
+  steps:
+    - computeResources: {}
+      image: 'registry.access.redhat.com/ubi9/openjdk-17:1.23'
+      name: clone
+      script: |
+        mvn -f /workspace/source/code package
+        ls -alt /workspace/source/code 
+  workspaces:
+    - description: source code folder
+      name: source

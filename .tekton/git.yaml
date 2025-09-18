@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: git-clone
+spec:
+  steps:
+    - computeResources: {}
+      image: 'registry.access.redhat.com/ubi9:latest'
+      name: clone
+      script: |
+        rm -rf /workspace/source/code
+        yum install -y git
+        git clone https://github.com/AlanFan/hello-shfe.git /workspace/source/code
+  workspaces:
+    - description: source code folder
+      name: source
